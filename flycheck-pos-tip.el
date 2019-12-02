@@ -7,6 +7,7 @@
 ;;     Sebastian Wiesner <swiesner@lunaryorn.com>
 ;; Maintainer: Sebastian Wiesner <swiesner@lunaryorn.com>
 ;; URL: https://github.com/flycheck/flycheck-pos-tip
+;; Package-Version: 20180610.1615
 ;; Keywords: tools, convenience
 ;; Version: 0.4-cvs
 ;; Package-Requires: ((emacs "24.1") (flycheck "0.22") (pos-tip "0.4.6"))
@@ -73,8 +74,8 @@ messages on TTY frames if `flycheck-pos-tip-mode' is active."
   "Display ERRORS, using a graphical tooltip on GUI frames."
   (when errors
     (if (display-graphic-p)
-        (let ((message (mapconcat #'flycheck-error-format-message-and-id
-                                  errors "\n\n"))
+        (let ((message (format "%s " (mapconcat #'flycheck-error-format-message-and-id
+                                                  errors "\n\n")))
               (line-height (car (window-line-height))))
           (pos-tip-show message nil nil nil flycheck-pos-tip-timeout
                         flycheck-pos-tip-max-width nil
