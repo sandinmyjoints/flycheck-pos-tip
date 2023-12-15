@@ -83,12 +83,14 @@ messages on TTY frames if `flycheck-pos-tip-mode' is active."
   "Display ERRORS, using a graphical tooltip on GUI frames."
   (when errors
     (if (display-graphic-p)
-        ;; my changes:
+        ;; wjb -- my changes:
         ;; (let ((message (format "%s " (mapconcat #'flycheck-error-format-message-and-id
         ;;                                           errors "\n\n")))
         (let ((message (flycheck-help-echo-all-error-messages errors))
               (line-height (car (window-line-height))))
           (flycheck-pos-tip--check-pos)
+          ;; (message (format "lint: <%s>" message)) ;; wjb
+          (message message) ;; wjb
           (pos-tip-show message nil nil nil flycheck-pos-tip-timeout
                         flycheck-pos-tip-max-width nil
                         ;; Add a little offset to the tooltip to move it away
